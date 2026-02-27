@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Kavana ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff0844, #ffb199);
+    text-align: center;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Popup */
+#popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    flex-direction: column;
+}
+
+#popup h1 {
+    font-size: 3em;
+    animation: glow 1.5s infinite alternate;
+}
+
+#popup button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4e50;
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 30px #ffe600; }
+}
+
+/* Header */
+header {
+    padding: 60px 20px 20px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+/* Gallery */
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px;
+}
+
+.gallery img {
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    transition: 0.5s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* Message */
+.message {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    font-size: 1.3em;
+    line-height: 1.8;
+}
+
+/* Confetti Canvas */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div id="popup">
+    <h1>🎉 Happy Birthday Kavana ❤️</h1>
+    <button onclick="startSurprise()">Click For Your Surprise 💖</button>
+</div>
+
+<header>
+    <h1>My Queen Kavana 👑</h1>
+    <h2>From Tarun, With Endless Love ❤️</h2>
+</header>
+
+<section class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+</section>
+
+<section class="message">
+    <p>
+        My Dearest Kavana 💕  
+        On this magical day, the world became brighter because YOU were born.
+        Your smile is my sunshine, your laughter is my favorite melody,
+        and your presence makes my life a beautiful dream. ✨
+    </p>
+
+    <p>
+        I wish you unlimited happiness, crazy success, endless love,
+        and dreams that come true faster than you imagine.
+        You deserve the universe… and I promise to always stand by you. 💖
+    </p>
+
+    <p>
+        Happy Birthday, my fantasy girl, my best friend, my forever favorite person. 🌹
+    </p>
+</section>
+
+<footer>
+    Made with Infinite Love ❤️ – Tarun
+</footer>
+
+<canvas id="confetti"></canvas>
+
+<script>
+function startSurprise() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("music").play();
+}
+
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let pieces = [];
+for (let i = 0; i < 150; i++) {
+    pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 8 + 4,
+        speed: Math.random() * 3 + 1
+    });
+}
+
+function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    pieces.forEach(p => {
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+        p.y += p.speed;
+        if (p.y > canvas.height) p.y = 0;
+    });
+    requestAnimationFrame(drawConfetti);
+}
+drawConfetti();
+</script>
+
+</body>
+</html>
